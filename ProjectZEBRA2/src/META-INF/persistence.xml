@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="ProjectZEBRA2" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<mapping-file>META-INF/orm.xml</mapping-file>
+		<class>pl.slaycio.projectzebra2.datamodel.Account</class>
+		<class>pl.slaycio.projectzebra2.datamodel.AccountOwner</class>
+		<class>pl.slaycio.projectzebra2.datamodel.FinancialInstitution</class>
+		<class>pl.slaycio.projectzebra2.datamodel.Transaction</class>
+		<class>pl.slaycio.projectzebra2.datamodel.TransactionCategory</class>
+		<class>pl.slaycio.projectzebra2.datamodel.User</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:file:C:\homeProjectZEBRA\hsqldb\data\zebraDB"/>
+			<property name="javax.persistence.jdbc.user" value="SA"/>
+			<property name="javax.persistence.schema-generation.database.action" value="create"/>
+			<property name="javax.persistence.schema-generation.create-database-schemas" value="false"/>
+		</properties>
+	</persistence-unit>
+</persistence>
