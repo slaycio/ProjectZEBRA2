@@ -11,7 +11,7 @@
 		<class>pl.slaycio.projectzebra2.datamodel.User</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:file:C:\homeProjectZEBRA\hsqldb\data\zebraDB"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:file:.\data\zebraDB.hsql"/>
 			<property name="javax.persistence.jdbc.user" value="SA"/>
 			<property name="javax.persistence.schema-generation.database.action" value="create"/>
 			<property name="javax.persistence.schema-generation.create-database-schemas" value="false"/>
