@@ -13,7 +13,7 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 @SuppressWarnings("serial")
-@Theme("projectZebraTheme2")
+@Theme("projectzebra2")
 public class zebraUI extends UI {
 
 	public static VerticalLayout mainLayout;	
@@ -23,7 +23,7 @@ public class zebraUI extends UI {
 	public static ZebraBody zebraBodyInst ;
 	
 	
-	@WebServlet(value = "/*", asyncSupported = true)
+	@WebServlet
 	@VaadinServletConfiguration(productionMode = false, ui = zebraUI.class)
 	public static class Servlet extends VaadinServlet {
 	}

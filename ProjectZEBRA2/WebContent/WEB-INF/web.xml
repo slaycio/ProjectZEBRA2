@@ -14,7 +14,7 @@
       <description>
   		Vaadin UI class to use</description>
       <param-name>UI</param-name>
-      <param-value>pl.slaycio.projectzebra2.ProjectZebra2UI</param-value>
+      <param-value>pl.slaycio.projectzebra2.UI.zebraUI</param-value>
     </init-param>
     <init-param>
       <description>
