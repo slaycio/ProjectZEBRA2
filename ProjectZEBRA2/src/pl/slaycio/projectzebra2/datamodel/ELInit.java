@@ -31,7 +31,7 @@ public class ELInit {
 
 	   
 	    em.getTransaction().begin();
-	    FinancialInstitution todo = new FinancialInstitution("a","b","c");
+	    FinancialInstitution todo = new FinancialInstitution("dfs","b","c");
 	    todo.setSymbol("DUUPA");
 	    todo.setDescription("This is a test");
 	    em.persist(todo);

@@ -2,8 +2,15 @@ package pl.slaycio.projectzebra2.datamodel;
 
 import java.io.Serializable;
 
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import pl.slaycio.projectzebra2.datamodel.AccountOwner;
+import javax.persistence.OneToOne;
 
 
 /**
@@ -11,28 +18,36 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="\"users\"")
+@Table(name="users")
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="\"created_by\"", nullable=false, length=2000000000)
-	private String createdBy;
-
-	@Column(name="\"creation_date\"", nullable=false)
-	private String creationDate;
+	
 
 	@Id
+	@GeneratedValue(generator="UserSeq")
+    @SequenceGenerator(name="UserSeq",sequenceName="USER_SEQ", allocationSize=1)
 	private int id;
 
-	@Column(name="\"owner\"", nullable=false)
-	private int owner;
-
-	@Column(name="\"password\"", nullable=false, length=2000000000)
+	@Column(name="password", nullable=false, length=2000000000)
 	private String password;
 
-	@Column(name="\"user\"", nullable=false, length=2000000000)
+	@Column(name="user", nullable=false, length=2000000000)
 	private String user;
+	
+	@Column(name="created_by", nullable=false, length=2000000000)
+	private String createdBy;
+
+	@Column(name="creation_date", nullable=false)
+	private String creationDate;
+
+
+
+	@OneToOne
+	private AccountOwner accountOwner;
+
+
 
 	public User() {
 	}
@@ -61,14 +76,6 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public int getOwner() {
-		return this.owner;
-	}
-
-	public void setOwner(int owner) {
-		this.owner = owner;
-	}
-
 	public String getPassword() {
 		return this.password;
 	}
@@ -83,6 +90,14 @@ public class User implements Serializable {
 
 	public void setUser(String user) {
 		this.user = user;
+	}
+
+	public AccountOwner getAccountOwner() {
+	    return accountOwner;
+	}
+
+	public void setAccountOwner(AccountOwner param) {
+	    this.accountOwner = param;
 	}
 
 }

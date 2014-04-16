@@ -1,9 +1,19 @@
 package pl.slaycio.projectzebra2.datamodel;
 
 import java.io.Serializable;
+import java.util.Collection;
 
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import pl.slaycio.projectzebra2.datamodel.TransactionEntity;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
 
 
 /**
@@ -11,31 +21,40 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="\"financial_institutions\"")
+@Table(name="financial_institutions")
 @NamedQuery(name="FinancialInstitution.findAll", query="SELECT f FROM FinancialInstitution f")
 public class FinancialInstitution implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="\"created_by\"", nullable=false, length=2000000000)
-	private String createdBy;
-
-	@Column(name="\"creation_date\"", nullable=false)
-	private String creationDate;
-
-	@Column(name="\"description\"", nullable=false, length=2000000000)
-	private String description;
-
 	@Id
+	@GeneratedValue(generator="FinInstSeq")
+    @SequenceGenerator(name="FinInstSeq",sequenceName="FIN_INT_SEQ", allocationSize=1)
 	private int id;
-
-	@Column(name="\"institution_type\"", nullable=false, length=2000000000)
+	
+	@Column(name="description", nullable=false, length=2000000000)
+	private String description;
+	
+	@Column(name="institution_type", nullable=false, length=2000000000)
 	private String institutionType;
 
-	@Column(name="\"official_name\"", nullable=false, length=2000000000)
+	@Column(name="official_name", nullable=false, length=2000000000)
 	private String officialName;
 
-	@Column(name="\"symbol\"", nullable=false, length=2000000000)
+	@Column(name="symbol", nullable=false, length=2000000000)
 	private String symbol;
+	
+	@Column(name="created_by", nullable=false, length=2000000000)
+	private String createdBy;
+
+	@Column(name="creation_date", nullable=false)
+	private String creationDate;
+
+	@OneToMany(mappedBy = "financialInstitution")
+	private Collection<Account> account;
+
+	@OneToOne
+	@JoinColumn(name = "transaction_entities_id", referencedColumnName = "id")
+	private TransactionEntity transactionEntity;
 
 	public FinancialInstitution() {
 	}
@@ -106,6 +125,22 @@ public class FinancialInstitution implements Serializable {
 
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
+	}
+
+	public Collection<Account> getAccount() {
+	    return account;
+	}
+
+	public void setAccount(Collection<Account> param) {
+	    this.account = param;
+	}
+
+	public TransactionEntity getTransactionEntity() {
+	    return transactionEntity;
+	}
+
+	public void setTransactionEntity(TransactionEntity param) {
+	    this.transactionEntity = param;
 	}
 
 }

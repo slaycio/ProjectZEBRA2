@@ -2,8 +2,16 @@ package pl.slaycio.projectzebra2.datamodel;
 
 import java.io.Serializable;
 
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import pl.slaycio.projectzebra2.datamodel.TransactionEntity;
 
 
 /**
@@ -11,59 +19,61 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="\"transactions\"")
+@Table(name="transactions")
 @NamedQuery(name="Transaction.findAll", query="SELECT t FROM Transaction t")
 public class Transaction implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="\"category_id\"", nullable=false)
-	private int categoryId;
-
-	@Column(name="\"created_by\"", nullable=false, length=2000000000)
-	private String createdBy;
-
-	@Column(name="\"creation_date\"", nullable=false)
-	private String creationDate;
-
-	@Column(name="\"from_account_id\"", nullable=false)
-	private int fromAccountId;
-
-	@Column(name="\"from_amount\"", nullable=false, length=2000000000)
+	@Id
+	@GeneratedValue(generator="TrxSeq")
+    @SequenceGenerator(name="TrxSeq",sequenceName="TRX_SEQ", allocationSize=1)
+	private int id;
+	
+	@Column(name="category_id", nullable=false)
+	private int categoryID;
+	
+	@Column(name="from_amount", nullable=false, length=2000000000)
 	private String fromAmount;
 
-	@Column(name="\"from_currency\"", nullable=false, length=2000000000)
-	private String fromCurrency;
-
-	@Id
-	private int id;
-
-	@Column(name="\"table_exchange_rate\"", nullable=false, length=2000000000)
-	private String tableExchangeRate;
-
-	@Column(name="\"to_account_id\"", nullable=false)
-	private int toAccountId;
-
-	@Column(name="\"to_amount\"", nullable=false, length=2000000000)
+	@Column(name="to_amount", nullable=false, length=2000000000)
 	private String toAmount;
 
-	@Column(name="\"to_currency\"", nullable=false, length=2000000000)
-	private String toCurrency;
-
-	@Column(name="\"transaction_date\"", nullable=false)
+	@Column(name="transaction_date", nullable=false)
 	private String transactionDate;
 
-	@Column(name="\"user_exchange_rate\"", nullable=false, length=2000000000)
+	@Column(name="table_exchange_rate", nullable=false, length=2000000000)
+	private String tableExchangeRate;
+	
+	@Column(name="user_exchange_rate", nullable=false, length=2000000000)
 	private String userExchangeRate;
+	
+	@Column(name="created_by", nullable=false, length=2000000000)
+	private String createdBy;
+
+	@Column(name="creation_date", nullable=false)
+	private String creationDate;
+
+	@ManyToOne
+	@JoinColumn(name = "to_account")
+	private Account toAccount;
+
+	@ManyToOne
+	@JoinColumn(name = "from_account")
+	private Account fromAccount;
+
+	@ManyToOne
+	@JoinColumn(name = "TransactionEntity_id", referencedColumnName = "id")
+	private TransactionEntity transactionEntity;
 
 	public Transaction() {
 	}
 
-	public int getCategoryId() {
-		return this.categoryId;
+	public int getCategoryID() {
+		return this.categoryID;
 	}
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public void setCategoryID(int categoryId) {
+		this.categoryID = categoryId;
 	}
 
 	public String getCreatedBy() {
@@ -82,28 +92,12 @@ public class Transaction implements Serializable {
 		this.creationDate = creationDate;
 	}
 
-	public int getFromAccountId() {
-		return this.fromAccountId;
-	}
-
-	public void setFromAccountId(int fromAccountId) {
-		this.fromAccountId = fromAccountId;
-	}
-
 	public String getFromAmount() {
 		return this.fromAmount;
 	}
 
 	public void setFromAmount(String fromAmount) {
 		this.fromAmount = fromAmount;
-	}
-
-	public String getFromCurrency() {
-		return this.fromCurrency;
-	}
-
-	public void setFromCurrency(String fromCurrency) {
-		this.fromCurrency = fromCurrency;
 	}
 
 	public int getId() {
@@ -122,28 +116,12 @@ public class Transaction implements Serializable {
 		this.tableExchangeRate = tableExchangeRate;
 	}
 
-	public int getToAccountId() {
-		return this.toAccountId;
-	}
-
-	public void setToAccountId(int toAccountId) {
-		this.toAccountId = toAccountId;
-	}
-
 	public String getToAmount() {
 		return this.toAmount;
 	}
 
 	public void setToAmount(String toAmount) {
 		this.toAmount = toAmount;
-	}
-
-	public String getToCurrency() {
-		return this.toCurrency;
-	}
-
-	public void setToCurrency(String toCurrency) {
-		this.toCurrency = toCurrency;
 	}
 
 	public String getTransactionDate() {
@@ -162,4 +140,29 @@ public class Transaction implements Serializable {
 		this.userExchangeRate = userExchangeRate;
 	}
 
+	public Account getToAccount() {
+	    return toAccount;
+	}
+
+	public void setToAccount(Account param) {
+	    this.toAccount = param;
+	}
+
+	public Account getFromAccount() {
+	    return fromAccount;
+	}
+
+	public void setFromAccount(Account param) {
+	    this.fromAccount = param;
+	}
+
+	public TransactionEntity getTransactionEntity() {
+	    return transactionEntity;
+	}
+
+	public void setTransactionEntity(TransactionEntity param) {
+	    this.transactionEntity = param;
+	}
+
+	
 }

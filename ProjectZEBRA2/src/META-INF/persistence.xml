@@ -6,7 +6,7 @@
 		<class>pl.slaycio.projectzebra2.datamodel.AccountOwner</class>
 		<class>pl.slaycio.projectzebra2.datamodel.FinancialInstitution</class>
 		<class>pl.slaycio.projectzebra2.datamodel.Transaction</class>
-		<class>pl.slaycio.projectzebra2.datamodel.TransactionCategory</class>
+		<class>pl.slaycio.projectzebra2.datamodel.TransactionEntity</class>
 		<class>pl.slaycio.projectzebra2.datamodel.User</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
