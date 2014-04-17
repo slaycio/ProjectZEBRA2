@@ -11,11 +11,11 @@
 	</entity>
 
 	<entity>
-		<entity-name>pl.slaycio.projectzebra2.datamodel.Transaction</entity-name>
+		<entity-name>pl.slaycio.projectzebra2.datamodel.Account</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>326</entity-height>
-		<entity-X-Coordinate>597</entity-X-Coordinate>
-		<entity-Y-Coordinate>275</entity-Y-Coordinate>
+		<entity-height>386</entity-height>
+		<entity-X-Coordinate>306</entity-X-Coordinate>
+		<entity-Y-Coordinate>20</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -33,22 +33,11 @@
 	</entity>
 
 	<entity>
-		<entity-name>pl.slaycio.projectzebra2.datamodel.Account</entity-name>
+		<entity-name>pl.slaycio.projectzebra2.datamodel.Transaction</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>386</entity-height>
-		<entity-X-Coordinate>306</entity-X-Coordinate>
-		<entity-Y-Coordinate>20</entity-Y-Coordinate>
-		<primary-collapsed>false</primary-collapsed>
-		<relation-collapsed>false</relation-collapsed>
-		<basic-collapsed>false</basic-collapsed>
-	</entity>
-
-	<entity>
-		<entity-name>pl.slaycio.projectzebra2.datamodel.AccountOwner</entity-name>
-		<entity-width>120</entity-width>
-		<entity-height>286</entity-height>
-		<entity-X-Coordinate>28</entity-X-Coordinate>
-		<entity-Y-Coordinate>262</entity-Y-Coordinate>
+		<entity-height>326</entity-height>
+		<entity-X-Coordinate>597</entity-X-Coordinate>
+		<entity-Y-Coordinate>275</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -60,6 +49,17 @@
 		<entity-height>226</entity-height>
 		<entity-X-Coordinate>820</entity-X-Coordinate>
 		<entity-Y-Coordinate>234</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>pl.slaycio.projectzebra2.datamodel.AccountOwner</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>286</entity-height>
+		<entity-X-Coordinate>28</entity-X-Coordinate>
+		<entity-Y-Coordinate>262</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>

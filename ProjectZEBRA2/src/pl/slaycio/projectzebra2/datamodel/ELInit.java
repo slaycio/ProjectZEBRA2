@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+
  
 
 public class ELInit {
@@ -38,6 +39,22 @@ public class ELInit {
 	    em.getTransaction().commit();
 
 	    em.close();
+	    
+	    
+	    
+	    EntityManager em2 = factory.createEntityManager();
+		
+	    em2.getTransaction().begin();
+		//em.createQuery("DELETE FROM User p").executeUpdate();
+		em2.persist(new User("Jeanne Calment", "ddd"));
+		em2.persist(new User("Sarah Knauss", "eere"));
+		em2.persist(new User("Lucy Hannah", "Sdsre"));
+		em2.getTransaction().commit();
+	    
+		
+		
+		em2.close();
+		
 				
 		
 	}

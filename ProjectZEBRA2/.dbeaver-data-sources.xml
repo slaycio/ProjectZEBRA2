@@ -1,43 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data-sources>
-	<data-source id="hsqldb_server-1397673194833--859404968" provider="generic" driver="hsqldb_server" name="HSQLDB - localhost" create-date="1397673285630" save-password="true" show-system-objects="true" read-only="false">
-		<connection host="localhost" port="9001" server="" database="" url="jdbc:hsqldb:hsql://localhost:9001/" user="" type="dev">
-			<network-handler type="PROXY" id="socks_proxy" enabled="false" user="" save-password="false">
-				<property name="socks-host" value=""/>
-				<property name="socks-port" value="1080"/>
-			</network-handler>
+	<data-source id="hsqldb_server-1397761803550--2143995504" provider="generic" driver="hsqldb_server" name="HSQLDB - zebra" create-date="1397761835520" update-date="1397762543792" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="localhost" port="9001" server="" database="zebraDB" url="jdbc:hsqldb:hsql://localhost:9001/zebraDB" user="sa" type="dev">
 			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" user="" save-password="false">
 				<property name="port" value="22"/>
 				<property name="host" value=""/>
 				<property name="keyPath" value=""/>
 				<property name="authType" value="PASSWORD"/>
 			</network-handler>
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" user="" save-password="false">
+				<property name="socks-host" value=""/>
+				<property name="socks-port" value="1080"/>
+			</network-handler>
 		</connection>
-		<virtual-meta-data>
-			<container name="model">
-				<container name="INFORMATION_SCHEMA">
-					<entity name="SEQUENCES">
-						<constraint name="PRIMARY" type="VIRTUAL KEY">
-							<attribute name="SEQUENCE_CATALOG"/>
-							<attribute name="SEQUENCE_SCHEMA"/>
-							<attribute name="SEQUENCE_NAME"/>
-							<attribute name="DATA_TYPE"/>
-							<attribute name="NUMERIC_PRECISION"/>
-							<attribute name="NUMERIC_PRECISION_RADIX"/>
-							<attribute name="NUMERIC_SCALE"/>
-							<attribute name="MAXIMUM_VALUE"/>
-							<attribute name="MINIMUM_VALUE"/>
-							<attribute name="INCREMENT"/>
-							<attribute name="CYCLE_OPTION"/>
-							<attribute name="DECLARED_DATA_TYPE"/>
-							<attribute name="DECLARED_NUMERIC_PRECISION"/>
-							<attribute name="DECLARED_NUMERIC_SCALE"/>
-							<attribute name="START_WITH"/>
-							<attribute name="NEXT_VALUE"/>
-						</constraint>
-					</entity>
-				</container>
-			</container>
-		</virtual-meta-data>
 	</data-source>
 </data-sources>
