@@ -46,9 +46,9 @@ public class ELInit {
 		
 	    em2.getTransaction().begin();
 		//em.createQuery("DELETE FROM User p").executeUpdate();
-		em2.persist(new User("Jeanne Calment", "ddd"));
-		em2.persist(new User("Sarah Knauss", "eere"));
-		em2.persist(new User("Lucy Hannah", "Sdsre"));
+		//em2.persist(new User("Jeanne Calment", "ddd"));
+		//em2.persist(new User("Sarah Knauss", "eere"));
+		//em2.persist(new User("Lucy Hannah", "Sdsre"));
 		em2.getTransaction().commit();
 	    
 		

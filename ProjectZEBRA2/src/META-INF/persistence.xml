@@ -8,6 +8,7 @@
 		<class>pl.slaycio.projectzebra2.datamodel.Transaction</class>
 		<class>pl.slaycio.projectzebra2.datamodel.TransactionEntity</class>
 		<class>pl.slaycio.projectzebra2.datamodel.User</class>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:hsql://localhost/zebraDB"/>

@@ -1,15 +1,11 @@
 package pl.slaycio.projectzebra2.UI;
 
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import pl.slaycio.projectzebra2.datamodel.User;
-
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerFactory;
 import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
@@ -18,8 +14,6 @@ import com.vaadin.ui.VerticalLayout;
 @SuppressWarnings("serial")
 public class adminTab  extends Panel {
 
-	private static final String PERSISTENCE_UNIT_NAME = "ProjectZEBRA2";
-	private static EntityManagerFactory factory;
 	
 	
 	public adminTab() {
@@ -51,38 +45,70 @@ public class adminTab  extends Panel {
 		ComboBox cmb1 = new ComboBox();
         cmb1.addItem("pierwsza wartosc");	
 		
-		Table ctl = new Table();
+        Table ctl = new Table();
 		ctl.addContainerProperty("tsswrwerwerwerwes", ComboBox.class, null);
 		
 		ctl.addItem(cmb1);
 		adminContent.addComponent(ctl);
 		
+				
+		//factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+	    //EntityManager em = factory.createEntityManager();
 		
-		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-	    EntityManager em = factory.createEntityManager();
-		
-	    em.getTransaction().begin();
+	    //em.getTransaction().begin();
 		//em.createQuery("DELETE FROM User p").executeUpdate();
-		em.persist(new User("Jeanne Calment", "ddd"));
-		em.persist(new User("Sarah Knauss", "eere"));
-		em.persist(new User("Lucy Hannah", "Sdsre"));
-		em.getTransaction().commit();
+		//em.persist(new TransactionEntity("Jeanne Calment", "ddd"));
+		//em.persist(new TransactionEntity("Sarah Knauss", "eere"));
+		//em.persist(new TransactionEntity("Lucy Hannah", "Sdsre"));
+		//em.getTransaction().commit();
 	    
 		// Create a persistent person container
-		JPAContainer<User> users = JPAContainerFactory.make(User.class, em);
+		JPAContainer<User> entis = JPAContainerFactory.make(User.class, "ProjectZEBRA2");
 
-		// You can add entities to the container as well
-		users.addEntity(new User("Marleur", "paswrodjeajny"));
-
+		//entis.addNestedContainerProperty("faking.nejm"); 
 		
+		
+		//EntityManager em = JPAContainerFactory.createEntityManagerForPersistenceUnit("ProjectZEBRA2");
+		
+		
+		//em.getTransaction().begin();
+		
+		Label wyniki = new Label();
+		adminContent.addComponent(wyniki);
+		//wyniki.setValue(em.toString());
+		
+		Label wyniki2 = new Label();
+		adminContent.addComponent(wyniki2);
+		wyniki2.setValue(entis.toString());
+		
+		Label wyniki3 = new Label();
+		adminContent.addComponent(wyniki3);
+		User fff = new User("dupa","cycce");
+		//em.persist(fff);
+		//entis.refresh();
+		
+		wyniki3.setValue("jrebel worksoor noti co s");
+		
+	//	wyniki3.setValue(fff.toString());
+		
+		
+		//EntityItem<User> costam33 = entis.getItem(9);
+		
+		// You can add entities to the container as well
+		entis.addEntity(fff);
+		
+		//EntityProvider<TransactionEntity> blee = entis.getEntityProvider();
+		//blee.getAllEntityIdentifiers(entis, null, null).toString();
+
+		//System.out.println("Size: " + costam33.toString());
 		
 		
 				 
 		// Bind it to a component
 		//Table userTable = new Table("The Persistent users");
-		Table userTable = new Table("The Persistent users", users);
+		Table userTable = new Table("The Persistent users", entis);
 		//userTable.setVisibleColumns(new String[]{"id","user","password"});
-		//userTable.setEditable(true);
+		userTable.setEditable(true);
 		adminContent.addComponent(userTable);
 		
 		//em.close();

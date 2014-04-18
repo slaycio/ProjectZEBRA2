@@ -57,9 +57,31 @@
 	<entity>
 		<entity-name>pl.slaycio.projectzebra2.datamodel.AccountOwner</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>286</entity-height>
+		<entity-height>266</entity-height>
 		<entity-X-Coordinate>28</entity-X-Coordinate>
 		<entity-Y-Coordinate>262</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>pl.slaycio.projectzebra2.datamodel.Entity1</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>70</entity-height>
+		<entity-X-Coordinate>50</entity-X-Coordinate>
+		<entity-Y-Coordinate>768</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>pl.slaycio.projectzebra2.datamodel.Faking</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>108</entity-height>
+		<entity-X-Coordinate>50</entity-X-Coordinate>
+		<entity-Y-Coordinate>938</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>

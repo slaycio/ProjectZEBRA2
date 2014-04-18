@@ -2,6 +2,7 @@ package pl.slaycio.projectzebra2.datamodel;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,9 +12,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import pl.slaycio.projectzebra2.datamodel.AccountOwner;
-
-import javax.persistence.OneToOne;
 
 
 /**
@@ -25,7 +23,6 @@ import javax.persistence.OneToOne;
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 	
 
 	@Id
@@ -41,25 +38,27 @@ public class User implements Serializable {
 	
 	@Column(name="created_by", nullable=false, length=2000000000)
 	private String createdBy;
-    
-	
+    	
 	@Temporal(TemporalType.TIMESTAMP) 
 	@Column(name="creation_date", nullable=false)
 	private java.util.Date creationDate;
+
+
 	
-
-	@OneToOne
-	private AccountOwner accountOwner;
-
+	
 
 	public User() {
 	}
 		
 	public User(String inUser, String inPassword) {
+		
+		super();
 		this.user = inUser;
 		this.password= inPassword;
 		this.createdBy = "currentLoggedUser";
 		this.creationDate = new Date();
+	
+				
 		
 	}
 
@@ -103,12 +102,6 @@ public class User implements Serializable {
 		this.user = user;
 	}
 
-	public AccountOwner getAccountOwner() {
-	    return accountOwner;
-	}
-
-	public void setAccountOwner(AccountOwner param) {
-	    this.accountOwner = param;
-	}
+	
 
 }

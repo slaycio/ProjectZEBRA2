@@ -2,7 +2,6 @@ package pl.slaycio.projectzebra2.datamodel;
 
 import java.io.Serializable;
 import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,8 +10,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import pl.slaycio.projectzebra2.datamodel.User;
-import javax.persistence.OneToOne;
 
 
 /**
@@ -54,10 +51,22 @@ public class AccountOwner implements Serializable {
 	@OneToMany(mappedBy = "accountOwner")
 	private Collection<Account> account;
 
-	@OneToOne(mappedBy = "accountOwner")
-	private User user;
-
+	
 	public AccountOwner() {
+	}
+	
+		
+
+	public AccountOwner(String name) {
+		super();
+		this.description = "opissss";
+		this.lastName = "uthredson";
+		this.name = name;
+		this.ownerType = "wlsciciel";
+		this.symbol ="PKKK";
+		this.createdBy = "mnie";
+		this.creationDate = "denjudejt";
+		
 	}
 
 	public String getCreatedBy() {
@@ -132,12 +141,5 @@ public class AccountOwner implements Serializable {
 	    this.account = param;
 	}
 
-	public User getUser() {
-	    return user;
-	}
-
-	public void setUser(User param) {
-	    this.user = param;
-	}
-
+	
 }

@@ -2,7 +2,6 @@ package pl.slaycio.projectzebra2.datamodel;
 
 import java.io.Serializable;
 import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +17,7 @@ import javax.persistence.OneToOne;
  * The persistent class for the "transaction_categories" database table.
  * 
  */
-@Entity
+@Entity(name = "TransactionEntity")
 @Table(name = "transaction_entities")
 @NamedQuery(name = "TransactionCategory.findAll", query = "SELECT t FROM TransactionEntity t")
 public class TransactionEntity implements Serializable {
@@ -47,9 +46,17 @@ public class TransactionEntity implements Serializable {
 	@OneToOne(mappedBy = "transactionEntity")
 	private FinancialInstitution financialInstitution;
 
-	public TransactionEntity() {
+	public TransactionEntity(String name, String desc) {
+		this.name = name;
+		this.description = desc;
+		this.createdBy = "asdasd";
+		this.creationDate = "24";
 	}
 
+	public TransactionEntity() {
+	
+	}
+	
 	public String getCreatedBy() {
 		return this.createdBy;
 	}
