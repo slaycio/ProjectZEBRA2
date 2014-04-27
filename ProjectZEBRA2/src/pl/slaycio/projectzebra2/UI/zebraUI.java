@@ -6,9 +6,7 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-
 import com.vaadin.ui.Alignment;
-
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
@@ -17,8 +15,6 @@ import com.vaadin.ui.VerticalLayout;
 public class zebraUI extends UI {
 
 	public static VerticalLayout mainLayout;	
-	//public static GridLayout mainLayout;	
-	//public static AbsoluteLayout mainLayout;
 	public static ZebraHeader zebraHeaderInst;
 	public static ZebraBody zebraBodyInst ;
 	
@@ -41,7 +37,7 @@ public class zebraUI extends UI {
 		zebraBodyInst = new ZebraBody();
 		mainLayout.addComponent(zebraHeaderInst);
 		mainLayout.addComponent(zebraBodyInst);
-		
+			
 		
 	}
 

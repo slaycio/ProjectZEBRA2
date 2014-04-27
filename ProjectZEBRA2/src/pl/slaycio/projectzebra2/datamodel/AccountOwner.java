@@ -1,13 +1,12 @@
 package pl.slaycio.projectzebra2.datamodel;
 
 import java.io.Serializable;
-import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -48,10 +47,6 @@ public class AccountOwner implements Serializable {
 	@Column(name="creation_date", nullable=false)
 	private String creationDate;
 
-	@OneToMany(mappedBy = "accountOwner")
-	private Collection<Account> account;
-
-	
 	public AccountOwner() {
 	}
 	
@@ -131,14 +126,6 @@ public class AccountOwner implements Serializable {
 
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
-	}
-
-	public Collection<Account> getAccount() {
-	    return account;
-	}
-
-	public void setAccount(Collection<Account> param) {
-	    this.account = param;
 	}
 
 	

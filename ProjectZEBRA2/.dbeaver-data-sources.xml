@@ -14,18 +14,4 @@
 			</network-handler>
 		</connection>
 	</data-source>
-	<data-source id="h2_server-1397830218377-968706810" provider="generic" driver="h2_server" name="H2 - zebraDB" create-date="1397830281006" save-password="true" show-system-objects="true" read-only="false">
-		<connection host="localhost" port="9092" server="" database="zebraDB" url="jdbc:h2:tcp://localhost:9092/zebraDB" user="" type="dev">
-			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" user="" save-password="false">
-				<property name="port" value="22"/>
-				<property name="host" value=""/>
-				<property name="keyPath" value=""/>
-				<property name="authType" value="PASSWORD"/>
-			</network-handler>
-			<network-handler type="PROXY" id="socks_proxy" enabled="false" user="" save-password="false">
-				<property name="socks-host" value=""/>
-				<property name="socks-port" value="1080"/>
-			</network-handler>
-		</connection>
-	</data-source>
 </data-sources>

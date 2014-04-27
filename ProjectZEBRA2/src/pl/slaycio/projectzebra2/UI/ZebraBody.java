@@ -55,13 +55,7 @@ public class ZebraBody extends Panel {
 				tts.setReadOnly(true);
 				tts.setValue("to jestttt spartaaaa");
 				
-				//TODO trzeba bêdzie teraz wyprobowac zakladanie tych obiektow i wtedy GUI
-				//FinancialInstitution nowaInstytucja = new FinancialInstitution("mBank", "", "", "mBank", "Bank", "mBank");
-				//nowaInstytucja.saveUsingDAO();
 				
-				//Account account1 = new Account("eKonto4223", "Konto w mBanku", "Rachunek bie¿¹cy", "Pawel2", nowaInstytucja, "EKO");
-				
-				//System.out.println(account1.getFinInstitution());
 				}
 		});
 		

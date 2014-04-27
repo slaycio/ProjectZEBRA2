@@ -1,118 +1,184 @@
 package pl.slaycio.projectzebra2.UI;
 
 
+//import javax.persistence.EntityManager;
+import pl.slaycio.projectzebra2.datamodel.AccountOwner;
 import pl.slaycio.projectzebra2.datamodel.User;
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerFactory;
+import com.vaadin.data.Property.ValueChangeEvent;
+import com.vaadin.data.Property.ValueChangeListener;
+import com.vaadin.event.FieldEvents.FocusEvent;
+import com.vaadin.event.FieldEvents.FocusListener;
+import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Panel;
 import com.vaadin.ui.Table;
+import com.vaadin.ui.Table.ColumnGenerator;
 import com.vaadin.ui.VerticalLayout;
 
 
-@SuppressWarnings("serial")
-public class adminTab  extends Panel {
+@SuppressWarnings({ "serial"})
+public class adminTab extends VerticalLayout {
 
 	
-	
-	public adminTab() {
+	 public Table userTable ;
+	 final public Button saveBtn ;
+	 
+	 public adminTab() {
 		this.setSizeFull();
-		VerticalLayout adminContent = new VerticalLayout();
-		this.setContent(adminContent);
-		
-		/*
-		adminContent.addComponent(new Label("to jest admin taba o jjjjeeeee  "+ Account.columnNames.size() ));
-		
+	
+					    
+		final Label nlbl = new Label("ccc"); ;
+		final JPAContainer<AccountOwner> owners = JPAContainerFactory.make(AccountOwner.class, "ProjectZEBRA2");
+		final JPAContainer<User> entis = JPAContainerFactory.make(User.class, "ProjectZEBRA2");
 				
+		//final EntityManager em = JPAContainerFactory.createEntityManagerForPersistenceUnit("ProjectZEBRA2");
 		
-		Table testT = new Table();
+		entis.addNestedContainerProperty("accountOwner.name");
+		entis.addNestedContainerProperty("accountOwner.id");
 		
+		userTable = new Table("The Persistent users", entis);
+		userTable.setVisibleColumns((Object[]) new String[] {"id","user","accountOwner.name"});
+		//userTable.setEditable(true);
+		userTable.setSelectable(true);
+		userTable.setImmediate(true);
+		userTable.setNullSelectionAllowed(false);
+		this.addComponent(userTable);
+		
+        
+		userTable.addGeneratedColumn("newaccountOwner_name", new ColumnGenerator() {
+		        	private static final long serialVersionUID = 1L;
+					@Override
+					public Object generateCell(final Table source, final Object itemId,	final Object columnId) {
+						final ComboBox cmbx = new ComboBox();
+						
+															
+						cmbx.setContainerDataSource(owners);
+						cmbx.setItemCaptionMode(ItemCaptionMode.PROPERTY);
+						cmbx.setItemCaptionPropertyId("name");
+														
+						cmbx.setValue(source.getItem(itemId).getItemProperty("accountOwner.id").getValue()); 
+						cmbx.setImmediate(true);
+						cmbx.setNullSelectionAllowed(false);
+						
+						cmbx.addFocusListener(new FocusListener(){
+
+							@Override
+							public void focus(FocusEvent event) {
+								source.select(itemId);
+																
+							}
+							
+							
+						});
+						
+						cmbx.addValueChangeListener(new ValueChangeListener(){
+
+						
+							@Override
+							public void valueChange(ValueChangeEvent event) {
+								
+							
+								
+								
+							}
+						
+						});
+						
+						
+						return cmbx;
+					}
+		        	
+		        	
+		        });
+      
+		saveBtn = new Button("SAVVVA");
+		
+		saveBtn.addClickListener(new Button.ClickListener() {
+			
+			public void buttonClick(ClickEvent event) {
 				
-		for (int s = 0; s < Account.columnNames.size(); s++) {
-			testT.addContainerProperty(Account.columnNames.get(s),String.class, null);		
-					
+				//userTable.getItem(userTable.getValue()).getItemProperty("accountOwner").setValue(owners.getItem(142));	
+				
+				nlbl.setValue(              //"dduuu"); // .setValue("cuuuu"
+				entis.getItem (userTable.getValue()).getItemProperty("accountOwner").toString()
+				//entis.getItem(userTable.getValue()).toString()
+				);
+				
+				
+				
+				User change = entis.getItem(userTable.getValue()).getEntity(); 
+				
+				nlbl.setValue(              //"dduuu"); // .setValue("cuuuu"
+						entis.getItem(userTable.getValue()).getEntity().getAccountOwner().getName().toString()
+						//userTable.getItem(userTable.getValue()).getItemProperty(id)
+				//TODO trzeba sprawdziæ jak dynamicznie ustalic zmiany w kolumnie comboboxow i zapisac je do odpowiednich kolumn		
+						//entis.getItem(userTable.getValue()).toString()
+						);
+				
+				change.setAccountOwner(owners.getItem(145).getEntity()); 
+			
+				entis.addEntity(change);
+				//em.persist(change);
+				entis.commit();
+				//userTable.commit();
+				userTable.refreshRowCache();	
+				
+	   		   
+					   		    
+	   		    
 				}
+		}); 
 		
-		testT.addItem(new Object[] {"dupp", "duppdesc", "fajne","Pawe³", "mBank", "mBank", "o tak","sedccc", "bank","fdfgfd"}, new Integer(1));
-		//TODO Obiekty musz¹ siê zwracac jako containery by mozna je dowi¹zaæ ³adnie - do tego musz¹ reagowac na zmiany wartoœci i siekaæ od razu przez DAO do bazy
-		// tutaj byla jeszcze druga linia wiec sprawdze commita
-		adminContent.addComponent(testT);
-		*/
 		
-		ComboBox cmb = new ComboBox();
-		adminContent.addComponent(cmb);
-		ComboBox cmb1 = new ComboBox();
-        cmb1.addItem("pierwsza wartosc");	
+		this.addComponent(saveBtn);
+		saveBtn.setEnabled(true); 
+		this.addComponent(nlbl);
 		
-        Table ctl = new Table();
-		ctl.addContainerProperty("tsswrwerwerwerwes", ComboBox.class, null);
+   
+        
+	/*
 		
-		ctl.addItem(cmb1);
-		adminContent.addComponent(ctl);
+		  form = new Form();
+          form.setCaption("Invoice editor");
+          FieldFactory jpaContainerFieldFactory = new FieldFactory();
+          jpaContainerFieldFactory.setVisibleProperties(User.class,
+          		"id","user","accountOwner.name");
+         
+         
+          form.setFormFieldFactory(jpaContainerFieldFactory);
+      	
+          form.getFooter().setVisible(true);
+
+          form.setEnabled(true);
+  		
+      	
+          
+          this.addComponent(form);
+        
+          
+        /* Nie usuwaæ !!!!!!!  *//*
+  		 userTable.addItemClickListener(new ItemClickListener(){
+				@Override
+				public void itemClick(ItemClickEvent event) {
+				 // form.setItemDataSource(userTable.getItem(event.getItemId()));	
+				}
+          });
+          
 		
-				
-		//factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-	    //EntityManager em = factory.createEntityManager();
 		
-	    //em.getTransaction().begin();
-		//em.createQuery("DELETE FROM User p").executeUpdate();
-		//em.persist(new TransactionEntity("Jeanne Calment", "ddd"));
-		//em.persist(new TransactionEntity("Sarah Knauss", "eere"));
-		//em.persist(new TransactionEntity("Lucy Hannah", "Sdsre"));
-		//em.getTransaction().commit();
+		  userTable.addValueChangeListener(new ValueChangeListener() {
+	            @Override
+	            public void valueChange(ValueChangeEvent event) {
+	                  form.setItemDataSource(userTable.getItem(userTable.getValue()));
+	      		}
+	      });
 	    
-		// Create a persistent person container
-		JPAContainer<User> entis = JPAContainerFactory.make(User.class, "ProjectZEBRA2");
-
-		//entis.addNestedContainerProperty("faking.nejm"); 
-		
-		
-		//EntityManager em = JPAContainerFactory.createEntityManagerForPersistenceUnit("ProjectZEBRA2");
-		
-		
-		//em.getTransaction().begin();
-		
-		Label wyniki = new Label();
-		adminContent.addComponent(wyniki);
-		//wyniki.setValue(em.toString());
-		
-		Label wyniki2 = new Label();
-		adminContent.addComponent(wyniki2);
-		wyniki2.setValue(entis.toString());
-		
-		Label wyniki3 = new Label();
-		adminContent.addComponent(wyniki3);
-		User fff = new User("dupa","cycce");
-		//em.persist(fff);
-		//entis.refresh();
-		
-		wyniki3.setValue("jrebel worksoor noti co s");
-		
-	//	wyniki3.setValue(fff.toString());
-		
-		
-		//EntityItem<User> costam33 = entis.getItem(9);
-		
-		// You can add entities to the container as well
-		entis.addEntity(fff);
-		
-		//EntityProvider<TransactionEntity> blee = entis.getEntityProvider();
-		//blee.getAllEntityIdentifiers(entis, null, null).toString();
-
-		//System.out.println("Size: " + costam33.toString());
-		
-		
-				 
-		// Bind it to a component
-		//Table userTable = new Table("The Persistent users");
-		Table userTable = new Table("The Persistent users", entis);
-		//userTable.setVisibleColumns(new String[]{"id","user","password"});
-		userTable.setEditable(true);
-		adminContent.addComponent(userTable);
-		
-		//em.close();
-		
+		*/
+	    		
 		
 	}
 
