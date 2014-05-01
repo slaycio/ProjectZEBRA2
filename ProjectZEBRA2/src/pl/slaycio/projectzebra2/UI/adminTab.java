@@ -4,19 +4,11 @@ package pl.slaycio.projectzebra2.UI;
 //import javax.persistence.EntityManager;
 import pl.slaycio.projectzebra2.datamodel.AccountOwner;
 import pl.slaycio.projectzebra2.datamodel.User;
+import pl.slaycio.projectzebra2.ext.ZebraTable;
 import com.vaadin.addon.jpacontainer.JPAContainer;
 import com.vaadin.addon.jpacontainer.JPAContainerFactory;
-import com.vaadin.data.Property.ValueChangeEvent;
-import com.vaadin.data.Property.ValueChangeListener;
-import com.vaadin.event.FieldEvents.FocusEvent;
-import com.vaadin.event.FieldEvents.FocusListener;
-import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.ComboBox;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.Table;
-import com.vaadin.ui.Table.ColumnGenerator;
 import com.vaadin.ui.VerticalLayout;
 
 
@@ -24,14 +16,23 @@ import com.vaadin.ui.VerticalLayout;
 public class adminTab extends VerticalLayout {
 
 	
-	 public Table userTable ;
-	 final public Button saveBtn ;
+	
+	
+	
 	 
 	 public adminTab() {
 		this.setSizeFull();
 	
-					    
-		final Label nlbl = new Label("ccc"); ;
+		 final ZebraTable userTable ;
+		 final Button saveBtn ;
+		 
+		 //final Map<String, ComboBox> cmbMap = new HashMap<String, ComboBox>();
+		 	 
+		// final ArrayList<ComboBox> cmbList = new ArrayList<ComboBox>();
+		 	
+		
+		
+	//	final Label nlbl = new Label("ccc"); ;
 		final JPAContainer<AccountOwner> owners = JPAContainerFactory.make(AccountOwner.class, "ProjectZEBRA2");
 		final JPAContainer<User> entis = JPAContainerFactory.make(User.class, "ProjectZEBRA2");
 				
@@ -40,7 +41,7 @@ public class adminTab extends VerticalLayout {
 		entis.addNestedContainerProperty("accountOwner.name");
 		entis.addNestedContainerProperty("accountOwner.id");
 		
-		userTable = new Table("The Persistent users", entis);
+		userTable = new ZebraTable("The Persistent users", entis);
 		userTable.setVisibleColumns((Object[]) new String[] {"id","user","accountOwner.name"});
 		//userTable.setEditable(true);
 		userTable.setSelectable(true);
@@ -48,13 +49,13 @@ public class adminTab extends VerticalLayout {
 		userTable.setNullSelectionAllowed(false);
 		this.addComponent(userTable);
 		
-        
+		/*  - moved to zebratable class
+		
 		userTable.addGeneratedColumn("newaccountOwner_name", new ColumnGenerator() {
 		        	private static final long serialVersionUID = 1L;
 					@Override
 					public Object generateCell(final Table source, final Object itemId,	final Object columnId) {
-						final ComboBox cmbx = new ComboBox();
-						
+						ComboBox cmbx = new ComboBox();
 															
 						cmbx.setContainerDataSource(owners);
 						cmbx.setItemCaptionMode(ItemCaptionMode.PROPERTY);
@@ -89,12 +90,18 @@ public class adminTab extends VerticalLayout {
 						});
 						
 						
+						cmbMap.put(source.getItem(itemId).getItemProperty("id").getValue().toString(), cmbx);
 						return cmbx;
 					}
 		        	
 		        	
 		        });
-      
+		userTable.getcMap().put("newaccountOwner_name", cmbMap);
+		
+		*/
+		
+		userTable.addNewComboEditedColumn("newaccountOwner_name",owners, "accountOwner.id","name");
+		
 		saveBtn = new Button("SAVVVA");
 		
 		saveBtn.addClickListener(new Button.ClickListener() {
@@ -103,28 +110,41 @@ public class adminTab extends VerticalLayout {
 				
 				//userTable.getItem(userTable.getValue()).getItemProperty("accountOwner").setValue(owners.getItem(142));	
 				
-				nlbl.setValue(              //"dduuu"); // .setValue("cuuuu"
-				entis.getItem (userTable.getValue()).getItemProperty("accountOwner").toString()
+	//			nlbl.setValue(              //"dduuu"); // .setValue("cuuuu"
+	//			entis.getItem (userTable.getValue()).getItemProperty("accountOwner").toString()
 				//entis.getItem(userTable.getValue()).toString()
-				);
+	//			);
 				
 				
 				
-				User change = entis.getItem(userTable.getValue()).getEntity(); 
+			
 				
-				nlbl.setValue(              //"dduuu"); // .setValue("cuuuu"
+			/*	nlbl.setValue(              //"dduuu"); // .setValue("cuuuu"
 						entis.getItem(userTable.getValue()).getEntity().getAccountOwner().getName().toString()
 						//userTable.getItem(userTable.getValue()).getItemProperty(id)
-				//TODO trzeba sprawdziæ jak dynamicznie ustalic zmiany w kolumnie comboboxow i zapisac je do odpowiednich kolumn		
+	
 						//entis.getItem(userTable.getValue()).toString()
 						);
+				*/
+				//userTable.getColumnGenerator("newaccountOwner_name").
+			//	nlbl.setValue(    
+				//userTable.getContainerProperty(userTable.getValue(), "newaccountOwner_name").getValue().toString()
+						//cmbList.get(userTable.getValue()).getValue().toString()
+				//		cmbMap.get(userTable.getValue()).getValue().toString()
+						
+				//		);
 				
-				change.setAccountOwner(owners.getItem(145).getEntity()); 
+			//	System.out.println(userTable.getValue().toString() +"  -   "+cmbMap.get(userTable.getValue()).getValue().toString());		 
 			
+				
+				// czeœc ze zmian¹ która dziala
+				///!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			    // TODO trzeba to teraz wrzucic w klase ZebraTable by zmiana w comboboxie zmieniala od razu wartosc persistowanej tabeli
+				User change = entis.getItem(userTable.getValue()).getEntity(); 
+				change.setAccountOwner(owners.getItem(userTable.getcMap().get("newaccountOwner_name").get(userTable.getValue().toString()).getValue()).getEntity()); 
 				entis.addEntity(change);
-				//em.persist(change);
 				entis.commit();
-				//userTable.commit();
+				
 				userTable.refreshRowCache();	
 				
 	   		   
@@ -135,8 +155,8 @@ public class adminTab extends VerticalLayout {
 		
 		
 		this.addComponent(saveBtn);
-		saveBtn.setEnabled(true); 
-		this.addComponent(nlbl);
+	//	saveBtn.setEnabled(true); 
+	//	this.addComponent(nlbl);
 		
    
         

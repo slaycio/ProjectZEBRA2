@@ -18,7 +18,7 @@ public class ELInit {
 	
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 	    EntityManager em = factory.createEntityManager();
