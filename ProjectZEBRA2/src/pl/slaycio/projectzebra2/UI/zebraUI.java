@@ -2,6 +2,7 @@ package pl.slaycio.projectzebra2.UI;
 
 
 import javax.servlet.annotation.WebServlet;
+import pl.slaycio.projectzebra2.datamodel.DataModel;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
@@ -27,6 +28,7 @@ public class zebraUI extends UI {
 	@Override
 	protected void init(VaadinRequest request) {
 		
+		DataModel.initializeDataModel();
 		
 		this.setSizeFull();
 		mainLayout = new VerticalLayout();
