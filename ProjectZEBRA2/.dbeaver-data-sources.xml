@@ -14,4 +14,18 @@
 			</network-handler>
 		</connection>
 	</data-source>
+	<data-source id="sqlite_jdbc-1414923346894--1915252846" provider="generic" driver="sqlite_jdbc" name="SQLite - oWNmainMMex.mmb" create-date="1414923374638" save-password="true" show-system-objects="true" read-only="false">
+		<connection server="" database="C:\oWN\oWNmainMMex.mmb" url="jdbc:sqlite:C:\oWN\oWNmainMMex.mmb" user="" type="dev">
+			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" user="" save-password="false">
+				<property name="port" value="22"/>
+				<property name="host" value=""/>
+				<property name="keyPath" value=""/>
+				<property name="authType" value="PASSWORD"/>
+			</network-handler>
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" user="" save-password="false">
+				<property name="socks-host" value=""/>
+				<property name="socks-port" value="1080"/>
+			</network-handler>
+		</connection>
+	</data-source>
 </data-sources>
