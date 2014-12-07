@@ -1,6 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE ProjectZebra2.xml>
-<entities>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><entities>
+	<entity>
+		<entity-name>pl.slaycio.projectzebra2.datamodel.AccountType</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>186</entity-height>
+		<entity-X-Coordinate>50</entity-X-Coordinate>
+		<entity-Y-Coordinate>20</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
 
 	<entity>
 		<entity-name>pl.slaycio.projectzebra2.datamodel.User</entity-name>
@@ -38,7 +46,7 @@
 	<entity>
 		<entity-name>pl.slaycio.projectzebra2.datamodel.Account</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>366</entity-height>
+		<entity-height>386</entity-height>
 		<entity-X-Coordinate>306</entity-X-Coordinate>
 		<entity-Y-Coordinate>20</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
@@ -60,7 +68,7 @@
 	<entity>
 		<entity-name>pl.slaycio.projectzebra2.datamodel.AccountOwner</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>228</entity-height>
+		<entity-height>266</entity-height>
 		<entity-X-Coordinate>28</entity-X-Coordinate>
 		<entity-Y-Coordinate>262</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>

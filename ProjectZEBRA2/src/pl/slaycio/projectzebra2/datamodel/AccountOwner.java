@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import pl.slaycio.projectzebra2.datamodel.Account;
+import java.util.Collection;
+import javax.persistence.ManyToMany;
 
 
 /**
@@ -46,6 +49,9 @@ public class AccountOwner implements Serializable {
 
 	@Column(name="creation_date", nullable=false)
 	private String creationDate;
+
+	@ManyToMany(mappedBy = "thisAccountOwners")
+	private Collection<Account> accountsOwned;
 
 	public AccountOwner() {
 	}
@@ -126,6 +132,18 @@ public class AccountOwner implements Serializable {
 
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
+	}
+
+
+
+	public Collection<Account> getAccount() {
+	    return accountsOwned;
+	}
+
+
+
+	public void setAccount(Collection<Account> param) {
+	    this.accountsOwned = param;
 	}
 
 	

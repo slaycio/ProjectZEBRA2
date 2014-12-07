@@ -7,11 +7,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import pl.slaycio.projectzebra2.datamodel.AccountOwner;
 
 
 
@@ -30,9 +33,9 @@ public class Account implements Serializable {
     @SequenceGenerator(name="AccSeq",sequenceName="ACC_SEQ", allocationSize=1)
 	private int id;
 	
-	@Column(name="account_type", nullable=false, length=2000000000)
-	private String accountType;
-
+	@ManyToOne
+	private AccountType accountType;
+	
 	@Column(name="balance", nullable=false, length=2000000000)
 	private String balance;
 	
@@ -69,14 +72,17 @@ public class Account implements Serializable {
 	@ManyToOne
 	private FinancialInstitution financialInstitution;
 
+	@ManyToMany
+	private Collection<AccountOwner> thisAccountOwners;
+
 	public Account() {
 	}
 
-	public String getAccountType() {
+	public AccountType getAccountType() {
 		return this.accountType;
 	}
 
-	public void setAccountType(String accountType) {
+	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
 	}
 
@@ -182,6 +188,15 @@ public class Account implements Serializable {
 
 	public void setFinancialInstitution(FinancialInstitution param) {
 	    this.financialInstitution = param;
+	}
+
+
+	public Collection<AccountOwner> getAccountOwners() {
+	    return thisAccountOwners;
+	}
+
+	public void setAccountOwners(Collection<AccountOwner> param) {
+	    this.thisAccountOwners = param;
 	}
 
 	

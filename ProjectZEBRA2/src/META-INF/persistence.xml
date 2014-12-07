@@ -3,6 +3,7 @@
 	<persistence-unit name="ProjectZEBRA2" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>pl.slaycio.projectzebra2.datamodel.Account</class>
+		<class>pl.slaycio.projectzebra2.datamodel.AccountType</class>
 		<class>pl.slaycio.projectzebra2.datamodel.AccountOwner</class>
 		<class>pl.slaycio.projectzebra2.datamodel.FinancialInstitution</class>
 		<class>pl.slaycio.projectzebra2.datamodel.Transaction</class>

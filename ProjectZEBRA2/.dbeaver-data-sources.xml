@@ -14,8 +14,8 @@
 			</network-handler>
 		</connection>
 	</data-source>
-	<data-source id="sqlite_jdbc-1414923346894--1915252846" provider="generic" driver="sqlite_jdbc" name="SQLite - oWNmainMMex.mmb" create-date="1414923374638" save-password="true" show-system-objects="true" read-only="false">
-		<connection server="" database="C:\oWN\oWNmainMMex.mmb" url="jdbc:sqlite:C:\oWN\oWNmainMMex.mmb" user="" type="dev">
+	<data-source id="sqlite_jdbc-1414923346894--1915252846" provider="generic" driver="sqlite_jdbc" name="SQLite - oWNmainMMex.mmb" create-date="1414923374638" update-date="1417957606846" save-password="true" show-system-objects="true" read-only="false">
+		<connection server="" database="C:\oWN\oWNmainMMex_DOZAPYTAN.mmb" url="jdbc:sqlite:C:\oWN\oWNmainMMex_DOZAPYTAN.mmb" user="" type="dev">
 			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" user="" save-password="false">
 				<property name="port" value="22"/>
 				<property name="host" value=""/>
